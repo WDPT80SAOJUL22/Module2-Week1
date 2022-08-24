@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- React's core library-->
+   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+   <!-- ReactDOM library renders the content created with React to the DOM. -->
+   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+   <!-- Transpile with babel -->
+   <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <!-- Aqui será renderizado toda minha aplicação -->
+  </div>
+
+  <script type="text/babel">
+    // const root = document.getElementById('root')
+    // DOM Manipulation
+    // const mainHeading = document.createElement('h1')
+    // mainHeading.textContent = 'Olá Mundo!!'
+    // root.appendChild(mainHeading)
+    
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+
+    // const element = React.createElement('div', {
+    //     className: 'container',
+    //     children: [
+    //         React.createElement('h1', {
+    //             children: 'Are you Reacting??'
+    //         }),
+    //         React.createElement('h3', {
+    //             children:[
+    //                 'Time Now Is',
+    //                 `${new Date().getHours()}:`,
+    //                 `${new Date().getMinutes()}:`,
+    //                 `${new Date().getSeconds()}`
+    //             ]
+    //         })
+    //     ]
+    // })
+
+    //JSX 
+
+    const Component = (props) => {
+        return(
+            <h2>Sou um component {props.name}</h2>
+        )
+    }
+
+
+    const element = (
+        <div className="container">
+            <h1>Are you React-ing Ironhackers?</h1>
+            <Component name='Roxanie'/>
+            <Component name='Lena'/>
+            <Component name='Everton'/>
+            <h3>Time now is: 
+                {new Date().getHours()} :
+                {new Date().getMinutes()} :
+                {new Date().getSeconds()}
+            </h3>
+        </div>
+    )
+
+    root.render(element)
+  </script>
+</body>
+</html>
