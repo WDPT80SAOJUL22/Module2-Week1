@@ -1,9 +1,11 @@
 import movieData from '../movies-data.json'
-import {useState} from 'react'
+import { useState } from 'react'
+import MovieCard from './MovieCard'
 
 const MovieList = () => {
 
   const [movies, setMovies] = useState(movieData)
+  const [showMovies, setShowMovies] = useState(true)
 
   const deleteMovie = (movieId) => {
     const filteredMovies = movies.filter((movie)=> movie._id !== movieId)
@@ -13,16 +15,10 @@ const MovieList = () => {
   return (
     <div>
         <h2>MovieList</h2>
-        {movies.map(movie => {
-            return (
-                <div key= {movie._id}>
-                    <h3>{movie.title}</h3>
-                    <p>Director: {movie.director}</p>
-                    <p>Rating: {movie.IMDBRating}</p>
-                    <button onClick={()=> {deleteMovie(movie._id)}}>Delete</button>
-                </div>
-            )
-        })}
+        <button onClick={()=>{setShowMovies(!showMovies)}}>{showMovies? 'Hide' : 'Show'}</button>
+        {showMovies &&
+            movies.map(movie => <MovieCard key={movie._id} movie={movie} clickToDelete={deleteMovie}/>)
+        }
     </div>
   )
 }
